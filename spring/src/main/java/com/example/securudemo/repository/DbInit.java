@@ -3,6 +3,7 @@ package com.example.securudemo.repository;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,18 +14,21 @@ import com.example.securudemo.model.User;
 @Service
 public class DbInit implements CommandLineRunner{
 
+	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
 	private RoleRepository roleRepository;
 	
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public DbInit(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
-		super();
-		this.userRepository = userRepository;
-		this.passwordEncoder = passwordEncoder;
-		this.roleRepository=roleRepository;
-	}
+//	public DbInit(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
+//		super();
+//		this.userRepository = userRepository;
+//		this.passwordEncoder = passwordEncoder;
+//		this.roleRepository=roleRepository;
+//	}
 	
 	@Override
 	public void run(String... args) {
