@@ -16,6 +16,5 @@ localhost:8080/api/public/management/reports -----> yalnizca manager repotr sayf
 
 ------------------------------------------------------------
 kayitli kullanicilar:
-[irsat,irsat]---->user
-[admin,admin]---->admin
-[manager,manager]---->manager
+[irsat,irsat]---->user, admin
+[salih,salih]---->admin
