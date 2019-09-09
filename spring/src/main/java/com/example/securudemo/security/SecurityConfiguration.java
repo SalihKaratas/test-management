@@ -59,28 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .authorizeRequests()
 	        .antMatchers(HttpMethod.POST, "/login").permitAll()
 	        .antMatchers("/api/public/management/*").hasRole("MANAGER")
-	        //.antMatchers("/api/public/admin/*").hasRole("ADMIN")
 	        .anyRequest().authenticated();
-        
-        //JWT ONCESİ ROLLENDİRME!!!!
-//                .antMatchers("/login").permitAll()            
-//                .antMatchers("/index.html").permitAll()
-//                .antMatchers("/profile/**").authenticated()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/management/**").hasAnyRole("ADMIN", "MANAGER")
-//                .antMatchers("/api/public/test1").hasAuthority("ACCESS_TEST1")
-//                .antMatchers("/api/public/test2").hasAuthority("ACCESS_TEST2")
-//                .antMatchers("/api/public/users").hasRole("ADMIN");
-//                .and()
-//                .formLogin()
-//                .loginProcessingUrl("/signin")
-//                .loginPage("/login").permitAll()
-//                .usernameParameter("txtUsername")
-//                .passwordParameter("txtPassword")
-//                .and()
-//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-//                .and()
-//                .rememberMe().tokenValiditySeconds(2592000).key("mySecret!").rememberMeParameter("checkRememberMe");
+                
     }
 
     @Bean

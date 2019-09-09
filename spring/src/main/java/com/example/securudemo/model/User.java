@@ -12,8 +12,6 @@ import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
-//lombok a geçilecek
-
 @Data
 @Entity
 public class User {
@@ -29,7 +27,16 @@ public class User {
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
+	@Column(name = "roles", nullable = false)
 	private List<Role> roles;
+	
+	@ManyToMany
+	@Column(name = "projects")
+	private List<Project> projects;
+	
+	@ManyToMany
+	@Column(name = "userGroups")
+	private List<UserGroup> userGroups;
 	
 	private int active;
 	
@@ -39,49 +46,5 @@ public class User {
 		this.password=password;	
 		this.active = 1;
 	}
-	
-	protected User() {
-		
-	}
-
-//	public Long getId() {
-//		return id;
-//	}
-//
-//	public String getUsername() {
-//		return username;
-//	}
-//
-//
-//	public void setUsername(String username) {
-//		this.username = username;
-//	}
-//
-//
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
-//	
-//	public int getActive() {
-//        return active;
-//    }
-//	
-//	public void setActivate(int activate) {
-//		this.active=activate;
-//	}
-//
-//	public List<Role> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<Role> roles) {
-//		this.roles = roles;
-//	}
-	
 	
 }

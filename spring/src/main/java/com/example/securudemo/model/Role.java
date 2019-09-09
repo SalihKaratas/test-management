@@ -41,14 +41,6 @@ public class Role {
 		
 	}
 	
-//	public List<User> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(List<User> users) {
-//		this.users = users;
-//	}
-//	
 	public List<String> getPermissionList(){
 		if(this.permission.length()>0) {
 			return Arrays.asList(this.permission.split(","));
@@ -62,25 +54,5 @@ public class Role {
 		}
 		return new ArrayList<>();
 	}
-//	
-//	public Long getId() {
-//		return id;
-//	}
-//
-//	public String getRoleName() {
-//		return roleName;
-//	}
-//
-//	public void setRoleName(String roleName) {
-//		this.roleName = roleName;
-//	}
-//
-//	public String getPermission() {
-//		return permission;
-//	}
-//
-//	public void setPermission(String permission) {
-//		this.permission = permission;
-//	}
 	
 }

@@ -44,35 +44,3 @@ public class RestApiController {
         
     }
 }
-
-//JWT ONCESİ CONTROLLER!!!!!!
-
-//@RestController
-//@RequestMapping("/api/public")
-//@CrossOrigin
-//public class RestApiController {
-//	
-//	private UserRepository userRepository;
-//	
-//	public RestApiController(UserRepository userRepository) {
-//		this.userRepository=userRepository;
-//	}
-//	
-//	@GetMapping("test1")
-//	public String test1() {
-//		return "test1";
-//	}
-//	
-//	@GetMapping("test2")
-//	public String test2() {
-//		return "test2";
-//	}
-//	
-//	@GetMapping("users")
-//	public List<User> users(){
-//		return userRepository.findAll();
-//		
-//	}
-//	
-//
-//}

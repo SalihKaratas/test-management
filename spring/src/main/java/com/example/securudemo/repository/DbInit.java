@@ -23,13 +23,6 @@ public class DbInit implements CommandLineRunner{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-//	public DbInit(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
-//		super();
-//		this.userRepository = userRepository;
-//		this.passwordEncoder = passwordEncoder;
-//		this.roleRepository=roleRepository;
-//	}
-	
 	@Override
 	public void run(String... args) {
 		userRepository.deleteAll();
