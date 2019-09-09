@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class User {
 	
@@ -20,7 +22,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false, name = "user_name")
+	@Column(nullable = false, name = "userName")
 	private String username;
 
 	@Column(nullable = false, name = "password")

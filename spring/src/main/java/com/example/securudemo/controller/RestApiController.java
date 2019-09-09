@@ -36,6 +36,7 @@ public class RestApiController {
     public void irs() {
     	userService.irsat();
     }
+    
     // admin olmayan goremez
     @GetMapping("admin/users")
     public List<User> users(){

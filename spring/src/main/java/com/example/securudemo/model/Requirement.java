@@ -11,8 +11,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Requirement {
 
@@ -20,12 +22,14 @@ public class Requirement {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(name = "requirementName", nullable = false)
+	private String requirementName;
+	
 	@ManyToMany
 	@Column(name = "projects", nullable = false)
 	private List<Project> projects;
 	
 	@OneToMany
-	@Column(name = "testCases", nullable = false)
 	private List<TestCase> testCases;
 	
 }

@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
+@NoArgsConstructor
 @Entity
 public class UserGroup {
 

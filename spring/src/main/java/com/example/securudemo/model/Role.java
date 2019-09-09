@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Role {
 
@@ -28,11 +30,8 @@ public class Role {
 	private String permission;
 	
 	@ManyToMany
+	@Column(name = "users")
 	private List<User> users;
-
-	public Role() {
-		
-	}
 	
 	public Role(String roleName, String permission) {
 		

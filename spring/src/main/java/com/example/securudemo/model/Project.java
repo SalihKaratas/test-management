@@ -12,8 +12,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Project {
 
@@ -24,9 +26,7 @@ public class Project {
 	@Column(name = "projectName", nullable = false)
 	private String projectName;
 	
-	//auto-fill
-	@Column(name = "createdBy", nullable = false)
-	private User createdBy;
+	//created-by eklenecek
 	
 	@Column(name = "exStartDate")
 	private Date exStartDate;

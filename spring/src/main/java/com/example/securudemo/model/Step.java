@@ -1,6 +1,5 @@
 package com.example.securudemo.model;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Step {
 
@@ -35,7 +36,6 @@ public class Step {
 	private String exResult;
 
 	@ManyToOne
-	@Column(name = "testCases", nullable = false)
-	private List<TestCase> testCases;
+	private TestCase testCase;
 	
 }

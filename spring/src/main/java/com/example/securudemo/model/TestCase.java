@@ -11,8 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class TestCase {
 
@@ -33,11 +35,9 @@ public class TestCase {
 	private String description;
 	
 	@ManyToOne
-	@Column(name = "requirements", nullable = false)
-	private List<Requirement> requirements;
+	private Requirement requirement;
 	
 	@OneToMany
-	@Column(name = "steps", nullable = false)
 	private List<Step> steps;
 	
 	
