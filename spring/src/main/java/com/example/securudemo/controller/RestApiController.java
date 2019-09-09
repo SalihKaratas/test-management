@@ -12,7 +12,7 @@ import com.example.securudemo.model.User;
 import com.example.securudemo.service.UserService;
 
 @RestController
-@RequestMapping("api/public")
+@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:3000")
 public class RestApiController {
 	
