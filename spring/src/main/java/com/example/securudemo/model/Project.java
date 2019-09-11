@@ -1,6 +1,6 @@
 package com.example.securudemo.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,19 +28,25 @@ public class Project {
 	@Column(name = "projectName", nullable = false)
 	private String projectName;
 	
-	//created-by eklenecek
 	
 	@Column(name = "exStartDate")
 	private Date exStartDate;
 	
-	@Column(name = "startDate", nullable = false)
-	private Date startDate;
+	@Column(name = "createDate", nullable = false)
+	private Date createDate;
 	
 	@Column(name = "exEndDate", nullable = false)
 	private Date exEndDate;
 	
 	@Column(name = "status", nullable = false)
 	private String status;
+	
+	@Column(name = "description")
+	private String description;
+	
+	@OneToOne
+	@JoinColumn(name = "createdBy")
+	private User createdBy;
 	
 	@ManyToMany
 	@Column(name = "requirements")
@@ -54,6 +62,22 @@ public class Project {
 	
 	@ManyToMany
 	@Column(name = "accessibleUserGroups")
-	private List<UserGroup> accessibleUserGroups;
+	private List<Group> accessibleUserGroups;
+
+	public Project(String projectName, Date exStartDate, Date exEndDate, String status,
+			User createdBy) {
+		super();
+		this.projectName = projectName;
+		this.exStartDate = exStartDate;
+		this.createDate = new Date(System.currentTimeMillis());
+		this.exEndDate = exEndDate;
+		this.status = status;
+		this.createdBy = createdBy;
+	}
+	
+	
+	
+	
+	
 	
 }

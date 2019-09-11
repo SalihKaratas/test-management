@@ -28,19 +28,12 @@ public class User {
 	@Column(nullable = false, name = "password")
 	private String password;
 	
+	private int active;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Column(name = "roles", nullable = false)
 	private List<Role> roles;
 	
-	@ManyToMany
-	@Column(name = "projects")
-	private List<Project> projects;
-	
-	@ManyToMany
-	@Column(name = "userGroups")
-	private List<UserGroup> userGroups;
-	
-	private int active;
 	
 	public User(String username, String password) {
 		

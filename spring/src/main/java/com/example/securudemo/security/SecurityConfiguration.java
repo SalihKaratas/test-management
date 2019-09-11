@@ -48,8 +48,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//    	http
+//	 		.antMatcher("h2-console/**").authorizeRequests().anyRequest().permitAll();
+    	// jwt kullandığımız için session ce crsf e ihtiyacımız yok
     	http
-	        // jwt kullandığımız için session ce crsf e ihtiyacımız yok
+    		.headers().frameOptions().sameOrigin()
+    		.and()
 	        .csrf().disable()
 	        .cors().and()
 	        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -58,6 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .addFilter(new JwtAuthorizationFilter(authenticationManager(),  this.userRepository))
 	        .authorizeRequests()
 	        .antMatchers(HttpMethod.POST, "/login").permitAll()
+	        .antMatchers("/h2-console/**").permitAll()
 	        .antMatchers("/api/public/management/*").hasRole("MANAGER")
 	        .anyRequest().authenticated();
                 

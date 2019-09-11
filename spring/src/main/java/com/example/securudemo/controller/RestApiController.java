@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.securudemo.model.Permission;
 import com.example.securudemo.model.User;
 import com.example.securudemo.service.UserService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("api/public")
 @CrossOrigin(origins = "http://localhost:3000")
 public class RestApiController {
 	
@@ -37,11 +38,20 @@ public class RestApiController {
     	userService.irsat();
     }
     
+    @GetMapping("admin/uliyv")
+    public List<Permission> uliyv() {
+    	return userService.ula();
+    }
+    
+    @GetMapping("admin/miniko")
+    public String mino() {
+    	return userService.miniko();
+    }
+    
     // admin olmayan goremez
     @GetMapping("admin/users")
     public List<User> users(){
         return userService.findAll();
-        
-        
+                
     }
 }

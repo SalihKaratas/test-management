@@ -1,11 +1,9 @@
 package com.example.securudemo.model;
 
-
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,29 +15,19 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class Role {
+public class Team {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false)
-	private String roleName;
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@Column(name = "permissions", nullable = false)
-	private List<Permission> permissions;
+	@Column(name = "teamName", nullable = false)
+	private String teamName; 
 	
 	@ManyToMany
-	@Column(name = "users")
-	private List<User> users;
+	@Column(name = "groups")
+	private List<Group> groups;
 	
-	public Role(String roleName, List<Permission> permission) {
-		
-		this.roleName = roleName;
-		this.permissions = permission;
-		
-	}
 	
 	
 }

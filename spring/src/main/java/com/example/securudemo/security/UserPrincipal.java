@@ -28,20 +28,24 @@ public class UserPrincipal implements UserDetails {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         // permissionları listeye al
-        user.getRoles().get(0).getPermissionList().forEach(p -> {
-            GrantedAuthority authority = new SimpleGrantedAuthority(p);
-            authorities.add(authority);
+        user.getRoles().forEach(p ->{
+        	p.getPermissions().forEach(z ->{
+        		GrantedAuthority authority = new SimpleGrantedAuthority(z.getPermissionName());
+        		authorities.add(authority);
+        	});
         });
 
-        //role leri listeye al
+        //role leri listeye al     
+
+        user.getRoles().forEach(q ->{
+        	GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + q.getRoleName());
+        	authorities.add(authority);
+        });
         
-
-        user.getRoles().forEach(i->{i.getRoleList().forEach(r -> {
-            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
-            authorities.add(authority);
-        });
+        
+       
         	
-        });
+        
         return authorities;
     }
 

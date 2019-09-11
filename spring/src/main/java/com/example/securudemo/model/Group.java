@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class UserGroup {
+public class Group {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,10 +24,6 @@ public class UserGroup {
 	
 	@Column(name = "userGroupName", nullable = false)
 	private String userGroupName; 
-	
-	@ManyToMany
-	@Column(name = "projects")
-	private List<Project> projects;
 	
 	@ManyToMany
 	@Column(name = "users")
