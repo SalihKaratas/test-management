@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,11 +23,11 @@ public class Permission {
 	@GeneratedValue
 	private Long id;
 	
-	@Column(name = "permissionName")
+	@Column(name = "permission_name")
 	private String permissionName;
 	
-	@ManyToMany
-	@Column(name = "roles")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "permissions")
 	private List<Role> roles;
 
 	public Permission(String permissionName) {

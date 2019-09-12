@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,20 +19,29 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "requirements")
 public class Requirement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "requirementName", nullable = false)
+	@Column(name = "requirement_name", nullable = false)
 	private String requirementName;
 	
-	@ManyToMany
-	@Column(name = "projects", nullable = false)
+	@JsonIgnore
+	@ManyToMany(mappedBy = "requirements")
 	private List<Project> projects;
 	
 	@OneToMany
 	private List<TestCase> testCases;
+
+	public Requirement(String requirementName) {
+		super();
+		this.requirementName = requirementName;
+		
+	}
+	
+	
 	
 }

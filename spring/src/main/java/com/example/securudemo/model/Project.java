@@ -9,9 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,17 +28,17 @@ public class Project {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "projectName", nullable = false)
+	@Column(name = "project_name", nullable = false)
 	private String projectName;
 	
 	
-	@Column(name = "exStartDate")
+	@Column(name = "ex_start_date")
 	private Date exStartDate;
 	
-	@Column(name = "createDate", nullable = false)
+	@Column(name = "create_date", nullable = false)
 	private Date createDate;
 	
-	@Column(name = "exEndDate", nullable = false)
+	@Column(name = "ex_end_date", nullable = false)
 	private Date exEndDate;
 	
 	@Column(name = "status", nullable = false)
@@ -44,24 +47,26 @@ public class Project {
 	@Column(name = "description")
 	private String description;
 	
-	@OneToOne
-	@JoinColumn(name = "createdBy")
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "created_by")
 	private User createdBy;
 	
+	@JsonIgnore
 	@ManyToMany
-	@Column(name = "requirements")
+	@JoinTable(
+			name = "project_requirements",
+			joinColumns = @JoinColumn(name = "project_id"),
+			inverseJoinColumns = @JoinColumn(name = "requirement_id"))
 	private List<Requirement> requirements;
 	
 	@OneToMany
-	@Column(name = "mileStones")
 	private List<MileStone> mileStones;
 	
-	@ManyToMany
-	@Column(name = "accessibleUsers")
+	@ManyToMany(mappedBy = "accessibleProjects")
 	private List<User> accessibleUsers;
 	
-	@ManyToMany
-	@Column(name = "accessibleUserGroups")
+	@ManyToMany(mappedBy = "accessibleProjects")
 	private List<Group> accessibleUserGroups;
 
 	public Project(String projectName, Date exStartDate, Date exEndDate, String status,

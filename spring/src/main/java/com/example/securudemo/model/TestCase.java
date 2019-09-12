@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +17,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "test_cases")
 public class TestCase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "testCaseName", nullable = false)
+	@Column(name = "test_case_name", nullable = false)
 	private String testCaseName;
 	
 	@Column(name = "type", nullable = false)
@@ -35,7 +37,7 @@ public class TestCase {
 	private String description;
 	
 	@ManyToOne
-	private Requirement requirement;
+	private Requirement requirements;
 	
 	@OneToMany
 	private List<Step> steps;

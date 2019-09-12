@@ -9,7 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,21 +22,25 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "roles")
 public class Role {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false)
+	@Column(name = "role_name",nullable = false)
 	private String roleName;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@Column(name = "permissions", nullable = false)
+	@JoinTable(
+			name = "role_permissions",
+			joinColumns = @JoinColumn(name = "role_id"),
+			inverseJoinColumns = @JoinColumn(name = "permission_id"))
 	private List<Permission> permissions;
 	
-	@ManyToMany
-	@Column(name = "users")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 	
 	public Role(String roleName, List<Permission> permission) {

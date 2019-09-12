@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,9 +23,10 @@ public class Team {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "teamName", nullable = false)
+	@Column(name = "team_name", nullable = false)
 	private String teamName; 
 	
+	@JsonIgnore
 	@ManyToMany
 	@Column(name = "groups")
 	private List<Group> groups;

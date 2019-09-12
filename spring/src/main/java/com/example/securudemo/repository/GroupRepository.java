@@ -8,8 +8,8 @@ import com.example.securudemo.model.Group;
 
 
 @Repository
-public interface UserGroupRepository extends JpaRepository<Group, Long>{
+public interface GroupRepository extends JpaRepository<Group, Long>{
 
-	Group findByUserGroupName(String groupName);
+	Group findByGroupName(String groupName);
 	
 }

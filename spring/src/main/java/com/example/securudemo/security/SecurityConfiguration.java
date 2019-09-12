@@ -48,10 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//    	http
-//	 		.antMatcher("h2-console/**").authorizeRequests().anyRequest().permitAll();
-    	// jwt kullandığımız için session ce crsf e ihtiyacımız yok
     	http
+	        // jwt kullandığımız için session ce crsf e ihtiyacımız yok
     		.headers().frameOptions().sameOrigin()
     		.and()
 	        .csrf().disable()

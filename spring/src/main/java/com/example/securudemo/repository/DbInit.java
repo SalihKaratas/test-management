@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.securudemo.model.Permission;
 import com.example.securudemo.model.Project;
+import com.example.securudemo.model.Requirement;
 import com.example.securudemo.model.Role;
 import com.example.securudemo.model.User;
 
@@ -32,14 +33,18 @@ public class DbInit implements CommandLineRunner{
 	private ProjectRepository projectRepository;
 	
 	@Autowired
+	private RequirementRepository requirementRepository;
+	
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public void run(String... args) throws ParseException {
-//		userRepository.deleteAll();
-//		roleRepository.deleteAll();
-//		permissionRepository.deleteAll();
-//		projectRepository.deleteAll();
+		userRepository.deleteAll();
+		roleRepository.deleteAll();
+		permissionRepository.deleteAll();
+		projectRepository.deleteAll();
+		requirementRepository.deleteAll();
 		//Create 1st Role and User
 		//Create Role with RoleName and Permission		
 		Permission perm1 = new Permission("ACCESS_TEST1");
@@ -68,11 +73,20 @@ public class DbInit implements CommandLineRunner{
 		Date exStart = new SimpleDateFormat("yyyy-MM-dd").parse("2019-10-01");
 		Date exEnd = new SimpleDateFormat("yyyy-MM-dd").parse("2019-12-31");
 		
-		Project pro1 = new Project("ProjectX", exStart, exEnd, "waiting", irsat);
+		Project pro1 = new Project("ProjectX", exStart, exEnd, "waiting", userRepository.findByUsername("salih"));
+		Project pro2 = new Project("Projecty", exStart, exEnd, "flush", userRepository.findByUsername("irsat"));
 		pro1.setDescription("project x description");
-		projectRepository.save(pro1);
+		pro2.setDescription("flushed");
+		projectRepository.saveAll(Arrays.asList(pro1,pro2));
 		System.out.println(projectRepository.findByProjectName("ProjectX").getStatus());
 		System.out.println(projectRepository.findByProjectName("ProjectX").getDescription());
+		
+		//------------------requirement oluştur------------------//
+		
+		Requirement req1 = new Requirement("req1");
+		requirementRepository.save(req1);
+		pro1.setRequirements(Arrays.asList(req1));
+		
 		
 		
 	}
